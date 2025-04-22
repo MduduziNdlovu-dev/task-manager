@@ -28,11 +28,13 @@ export interface Task {
 }
 
 export interface TaskInput {
+  _id?: string;
   title: string;
   description: string;
   completed?: boolean;
   dueDate: string;
   priority: string;
+  status?:string;
 }
 
 // ─── AXIOS INSTANCE ──────────────────────────────────────────────────────────
@@ -77,8 +79,8 @@ export const fetchTaskById = async (id: string): Promise<Task> => {
 /**
  * Create a new task.
  */
-export const createTask = async (taskData: TaskInput): Promise<Task> => {
-  const res = await API.post<Task>("/tasks", taskData);
+export const createTask = async (data: TaskInput): Promise<Task> => {
+  const res = await API.post<Task>("/tasks", data);
   return res.data;
 };
 
